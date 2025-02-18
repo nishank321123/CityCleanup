@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityCleanup</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: black;
+            color: white;
+            padding: 15px 20px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            background: black;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        /* Active page button turns green */
+        .nav-links a.active {
+            background: green;
+        }
+
+        /* Profile Dropdown */
+        #profile-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #profile-icon {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        #profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            min-width: 150px;
+            overflow: hidden;
+            z-index: 100;
+        }
+
+        #profile-dropdown a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+        }
+
+        #profile-dropdown a:hover {
+            background: #f0f0f0;
+        }
+
+        #profile-dropdown hr {
+            border: none;
+            height: 1px;
+            background: #ddd;
+        }
+
+        #profile-dropdown .logout {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Show dropdown when clicked */
+        #profile-dropdown.show {
+            display: block;
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+            padding: 20px;
+            background: white;
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Default home section visible */
+        #home {
+            display: block;
+            text-align: center;
+        }
+
+        /* Issue Form */
+        #issueForm {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #issueForm input, #issueForm select, #issueForm button {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #tokenCount {
+            font-size: 18px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div id="logo">
+            <h1>CityCleanup</h1>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" data-target="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-target="issue">Issue</a></li>
+                <li><a href="#" class="nav-link" data-target="map">Map</a></li>
+                <li><a href="#" class="nav-link" data-target="token">Token</a></li>
+                <li><a href="#" class="nav-link" data-target="contact">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div id="profile-container">
+            <div id="profile-icon">U</div>
+            <div id="profile-dropdown">
+                <a href="#">Appearance</a>
+                <hr>
+                <a href="#">Notifications</a>
+                <a href="#">Settings</a>
+                <hr>
+                <a href="#" class="logout">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sections -->
+    <section id="home" class="section">
+        <h2>Welcome to CityCleanup</h2>
+        <p>Report issues and make your city better.</p>
+    </section>
+
+    <section id="issue" class="section">
+        <h2>Report an Issue</h2>
+        <form id="issueForm">
+            <label for="issueType">Type of Issue:</label>
+            <select id="issueType" name="issueType">
+                <option value="pothole">Pothole</option>
+                <option value="traffic_light">Broken Traffic Light</option>
+                <option value="drainage">Drainage Issue</option>
+                <option value="electricity">Electricity Issue</option>
+                <option value="water">Water Issue</option>
+            </select>
+
+            <label for="location">Add Location:</label>
+            <input type="text" id="location" name="location" placeholder="Enter coordinates">
+
+            <button type="submit">Submit Report</button>
+        </form>
+    </section>
+
+    <section id="map" class="section">
+        <h2>Locality Map</h2>
+        <p>View reported issues on the map.</p>
+    </section>
+
+    <section id="token" class="section">
+        <h2>Your Tokens</h2>
+        <p>You currently have <span id="tokenCount">0</span> tokens.</p>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p>Get in touch with us.</p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
